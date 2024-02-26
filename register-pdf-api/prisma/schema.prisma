@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Note {
+  id                         String   @id @default(uuid())
+  archdiocese                String
+  city                       String
+  parish                     String
+  hisName                    String
+  hisNickname                String
+  hisBirthdate               String
+  hisProfission              String
+  hisReligion                String
+  herName                    String
+  herNickname                String
+  herBirthdate               String
+  herProfission              String
+  herReligion                String
+  marriageReligious          Boolean
+  whichParish                String
+  address                    String
+  district                   String
+  cep                        String
+  cityState                  String
+  parishAddress              String
+  addressNumber              String
+  apartmentNumber            String
+  phoneNumber                String
+  hisProfessionalAddress     String
+  hisProfessionalPhoneNumber String
+  dateWedding                String
+  herProfessionalAddress     String
+  herProfessionalPhoneNumber String
+  numberOfChildren           String
+  numberFirstStep            String
+  dateFirstStep              String
+  localFirstStep             String
+  activitiesFirstStage       String
+  numberSecondStep           String
+  dateSecondStep             String
+  localSecondStep            String
+  activitiesSecondStage      String
+  numberThirdStep            String
+  dateThirdStep              String
+  localThirdStep             String
+  activitiesThirdStage       String
+  engagementParish           String
+  habilities                 String
+  created_at                 DateTime @default(now())
+
+  @@map("notes")
+}
+
+model Pastoral {
+  id   String @id @default(uuid())
+  name String
+
+  @@map("pastorals")
+}
