@@ -1,5 +1,5 @@
-import { TextAreaField } from "./textAreaField";
-import { TextField } from "./textField";
+import { TextAreaField } from "./text-area-field";
+import { TextField } from "./text-field";
 
 export const Input = {
   area: TextAreaField,

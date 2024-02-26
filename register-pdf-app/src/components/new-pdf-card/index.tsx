@@ -5,7 +5,7 @@ import { useFormik } from "formik";
 import { PdfEccInitalValues } from "../../constants";
 import { PdfEccSchemaType } from "../../types/yup";
 import { PdfEccSchema } from "../../schemas";
-import { NewPdfCardInterface } from "./newPdfCart.interface";
+import { NewPdfCardInterface } from "./new-pdf-cart.interface";
 
 export function NewPdfCard(props: NewPdfCardInterface) {
   const { saveRecord } = props;

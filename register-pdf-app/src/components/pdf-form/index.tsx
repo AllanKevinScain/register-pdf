@@ -1,6 +1,6 @@
 import { Input } from "..";
 import { RowContainer } from "../";
-import { PdfCardInterface } from "./pdfForm.interface";
+import { PdfCardInterface } from "./pdf-form.interface";
 
 export function PdfForm(props: PdfCardInterface) {
   const {

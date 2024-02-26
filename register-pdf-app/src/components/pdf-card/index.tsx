@@ -1,7 +1,7 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { formatDistanceToNow, format } from "date-fns";
 import { ptBR } from "date-fns/locale";
-import { PdfCardInterface } from "./pdfCart.interface";
+import { PdfCardInterface } from "./pdf-cart.interface";
 import { X } from "lucide-react";
 import { PdfForm } from "..";
 import { useFormik } from "formik";

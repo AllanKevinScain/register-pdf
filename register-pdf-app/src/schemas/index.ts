@@ -1,1 +1,1 @@
-export * from "./pdfEccInitalValues";
+export * from "./pdf-ecc-inital-values";
