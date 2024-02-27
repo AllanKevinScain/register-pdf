@@ -1,1 +1,1 @@
-export * from "./node.type";
+export * from "./note.type";

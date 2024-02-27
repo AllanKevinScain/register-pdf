@@ -3,15 +3,24 @@ import { Plus, X } from "lucide-react";
 import { PdfForm } from "../";
 import { useFormik } from "formik";
 import { PdfEccInitalValues } from "../../constants";
-import { PdfEccSchemaType } from "../../types/yup";
+import { PdfEccSchemaType } from "../../types";
 import { PdfEccSchema } from "../../schemas";
 import { NewPdfCardInterface } from "./new-pdf-cart.interface";
+import { useState } from "react";
 
 export function NewPdfCard(props: NewPdfCardInterface) {
   const { saveRecord } = props;
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  function handleOpenDialog() {
+    setIsOpen((s) => !s);
+  }
 
   const formikValues = useFormik<PdfEccSchemaType>({
-    onSubmit: (values) => saveRecord(values),
+    onSubmit: (values) => {
+      saveRecord(values);
+      handleOpenDialog();
+    },
     initialValues: PdfEccInitalValues,
     validationSchema: PdfEccSchema,
     validateOnChange: true,
@@ -19,7 +28,7 @@ export function NewPdfCard(props: NewPdfCardInterface) {
   });
 
   return (
-    <Dialog.Root>
+    <Dialog.Root open={isOpen} onOpenChange={handleOpenDialog}>
       <Dialog.Trigger className="flex rounded-md gap-3 p-3 bg-logo-1 text-slate-900 hover:ring-2 hover:ring-primary-600">
         <Plus className="size-5" />
         <span className="text-sm font-medium">Adicionar nota</span>

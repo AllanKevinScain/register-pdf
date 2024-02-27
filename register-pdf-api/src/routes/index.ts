@@ -3,11 +3,12 @@ import {
   CreateNoteController,
   CreatePastoralController,
   DeleteNoteController,
+  DeletePastoralController,
   EditNoteController,
   GetAllNoteController,
+  GetAllPastoralController,
   GetOneNoteController,
 } from "../controller";
-import { GetAllPastoralController } from "../controller/pastoral/get-all-pastoral";
 
 const router = Router();
 
@@ -20,6 +21,8 @@ router.post("/pastoral", createPastoral.handle);
 /* deletar */
 const deleteNote = new DeleteNoteController();
 router.delete("/delete-note", deleteNote.handle);
+const deletePastroal = new DeletePastoralController();
+router.delete("/delete-pastoral", deletePastroal.handle);
 
 /* editar */
 const editNote = new EditNoteController();

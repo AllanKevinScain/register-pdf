@@ -1,10 +1,10 @@
 import { Response } from "express";
 import { prismaClientdb } from "../../database";
-import { EditNodeRequestInterface } from "../../types";
+import { EditNoteRequestInterface } from "../../types";
 import { idNoteSchema, noteSchema } from "../../schemas";
 
 export class EditNoteController {
-  async handle(request: EditNodeRequestInterface, response: Response) {
+  async handle(request: EditNoteRequestInterface, response: Response) {
     const { body, query } = request;
     const { id } = query;
 

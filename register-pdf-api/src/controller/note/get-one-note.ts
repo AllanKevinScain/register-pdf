@@ -1,10 +1,10 @@
 import { Response } from "express";
 import { prismaClientdb } from "../../database";
-import { GetOneNodeRequestInterface } from "../../types";
+import { GetOneNoteRequestInterface } from "../../types";
 import { idNoteSchema } from "../../schemas";
 
 export class GetOneNoteController {
-  async handle(request: GetOneNodeRequestInterface, response: Response) {
+  async handle(request: GetOneNoteRequestInterface, response: Response) {
     const { query } = request;
 
     const parseId = idNoteSchema.safeParse(query);

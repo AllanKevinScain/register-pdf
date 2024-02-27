@@ -1,48 +1,153 @@
 import * as Yup from "yup";
+import { isValidMobilePhone } from "@brazilian-utils/brazilian-utils";
+
+export const validatePhoneNumber: Yup.TestFunction = (
+  value,
+  { createError, path }
+) => {
+  const parsedValue = String(value);
+  if (isValidMobilePhone(parsedValue)) {
+    return true;
+  }
+
+  return createError({
+    path,
+    message: "Informe um celular válido.",
+  });
+};
 
 export const PdfEccSchema = Yup.object().shape({
-  archdiocese: Yup.string().max(200),
-  city: Yup.string().max(200),
-  parish: Yup.string().max(200),
-  hisName: Yup.string().max(200),
-  hisNickname: Yup.string().max(200),
-  hisBirthdate: Yup.string().max(200),
-  hisProfission: Yup.string().max(200),
-  hisReligion: Yup.string().max(200),
-  herName: Yup.string().max(200),
-  herNickname: Yup.string().max(200),
-  herBirthdate: Yup.string().max(200),
-  herProfission: Yup.string().max(200),
-  herReligion: Yup.string().max(200),
+  archdiocese: Yup.string()
+    .min(3, "No mínimo 3 caracteres!")
+    .max(45)
+    .required("Campo obrigatório!"),
+  city: Yup.string()
+    .min(3, "No mínimo 3 caracteres!")
+    .max(45)
+    .required("Campo obrigatório!"),
+  parish: Yup.string()
+    .min(3, "No mínimo 3 caracteres!")
+    .max(45)
+    .required("Campo obrigatório!"),
+  hisName: Yup.string()
+    .min(3, "No mínimo 3 caracteres!")
+    .max(45)
+    .required("Campo obrigatório!"),
+  hisNickname: Yup.string()
+    .min(3, "No mínimo 3 caracteres!")
+    .max(45)
+    .required("Campo obrigatório!"),
+  hisBirthdate: Yup.string().required("Campo obrigatório!"),
+  hisProfission: Yup.string()
+    .min(3, "No mínimo 3 caracteres!")
+    .max(45)
+    .required("Campo obrigatório!"),
+  hisReligion: Yup.string()
+    .min(3, "No mínimo 3 caracteres!")
+    .max(45)
+    .required("Campo obrigatório!"),
+  herName: Yup.string()
+    .min(3, "No mínimo 3 caracteres!")
+    .max(45)
+    .required("Campo obrigatório!"),
+  herNickname: Yup.string()
+    .min(3, "No mínimo 3 caracteres!")
+    .max(45)
+    .required("Campo obrigatório!"),
+  herBirthdate: Yup.string().required("Campo obrigatório!"),
+  herProfission: Yup.string()
+    .min(3, "No mínimo 3 caracteres!")
+    .max(45)
+    .required("Campo obrigatório!"),
+  herReligion: Yup.string()
+    .min(3, "No mínimo 3 caracteres!")
+    .max(45)
+    .required("Campo obrigatório!"),
   marriageReligious: Yup.bool(),
-  whichParish: Yup.string().max(200),
-  address: Yup.string().max(200),
-  district: Yup.string().max(200),
-  cep: Yup.string().max(200),
-  cityState: Yup.string().max(200),
-  parishAddress: Yup.string().max(200),
-  addressNumber: Yup.string().max(200),
-  apartmentNumber: Yup.string().max(200),
-  phoneNumber: Yup.string().max(200),
-  hisProfessionalAddress: Yup.string().max(200),
-  hisProfessionalPhoneNumber: Yup.string().max(200),
-  dateWedding: Yup.string().max(200),
-  herProfessionalAddress: Yup.string().max(200),
-  herProfessionalPhoneNumber: Yup.string().max(200),
-  numberOfChildren: Yup.string().max(200),
-  numberFirstStep: Yup.string().max(200),
-  dateFirstStep: Yup.string().max(200),
-  localFirstStep: Yup.string().max(200),
-  activitiesFirstStage: Yup.string().max(200),
-  numberSecondStep: Yup.string().max(200),
-  dateSecondStep: Yup.string().max(200),
-  localSecondStep: Yup.string().max(200),
-  activitiesSecondStage: Yup.string().max(200),
-  numberThirdStep: Yup.string().max(200),
-  dateThirdStep: Yup.string().max(200),
-  localThirdStep: Yup.string().max(200),
-  activitiesThirdStage: Yup.string().max(200),
-  engagementParish: Yup.string().max(200),
-  habilities: Yup.string().max(200),
-  createDate: Yup.date(),
+  whichParish: Yup.string()
+    .min(3, "No mínimo 3 caracteres!")
+    .max(45)
+    .required("Campo obrigatório!"),
+  address: Yup.string()
+    .min(3, "No mínimo 3 caracteres!")
+    .max(45)
+    .required("Campo obrigatório!"),
+  district: Yup.string().required("Campo obrigatório!"),
+  cep: Yup.string()
+    .min(3, "No mínimo 3 caracteres!")
+    .max(45)
+    .required("Campo obrigatório!"),
+  cityState: Yup.string()
+    .min(3, "No mínimo 3 caracteres!")
+    .max(45)
+    .required("Campo obrigatório!"),
+  parishAddress: Yup.string()
+    .min(3, "No mínimo 3 caracteres!")
+    .max(45)
+    .required("Campo obrigatório!"),
+  addressNumber: Yup.string()
+    .min(3, "No mínimo 3 caracteres!")
+    .max(45)
+    .required("Campo obrigatório!"),
+  apartmentNumber: Yup.string()
+    .min(3, "No mínimo 3 caracteres!")
+    .max(45)
+    .required("Campo obrigatório!"),
+  phoneNumber: Yup.string()
+    .test({ name: "phoneNumber", test: validatePhoneNumber })
+    .required("Campo obrigatório!"),
+  hisProfessionalAddress: Yup.string()
+    .min(3, "No mínimo 3 caracteres!")
+    .max(45)
+    .required("Campo obrigatório!"),
+  hisProfessionalPhoneNumber: Yup.string()
+    .test({ name: "phoneNumber", test: validatePhoneNumber })
+    .required("Campo obrigatório!"),
+  dateWedding: Yup.string().required("Campo obrigatório!"),
+  herProfessionalAddress: Yup.string()
+    .min(3, "No mínimo 3 caracteres!")
+    .max(45)
+    .required("Campo obrigatório!"),
+  herProfessionalPhoneNumber: Yup.string()
+    .test({ name: "phoneNumber", test: validatePhoneNumber })
+    .required("Campo obrigatório!"),
+  numberOfChildren: Yup.string().max(2).required("Campo obrigatório!"),
+  numberFirstStep: Yup.string().max(4).required("Campo obrigatório!"),
+  dateFirstStep: Yup.string().required("Campo obrigatório!"),
+  localFirstStep: Yup.string()
+    .min(3, "No mínimo 3 caracteres!")
+    .max(45)
+    .required("Campo obrigatório!"),
+  activitiesFirstStage: Yup.string()
+    .min(3, "No mínimo 3 caracteres!")
+    .max(45)
+    .required("Campo obrigatório!"),
+  numberSecondStep: Yup.string().max(4).required("Campo obrigatório!"),
+  dateSecondStep: Yup.string().required("Campo obrigatório!"),
+  localSecondStep: Yup.string()
+    .min(3, "No mínimo 3 caracteres!")
+    .max(45)
+    .required("Campo obrigatório!"),
+  activitiesSecondStage: Yup.string()
+    .min(3, "No mínimo 3 caracteres!")
+    .max(45)
+    .required("Campo obrigatório!"),
+  numberThirdStep: Yup.string().max(4).required("Campo obrigatório!"),
+  dateThirdStep: Yup.string().required("Campo obrigatório!"),
+  localThirdStep: Yup.string()
+    .min(3, "No mínimo 3 caracteres!")
+    .max(45)
+    .required("Campo obrigatório!"),
+  activitiesThirdStage: Yup.string()
+    .min(3, "No mínimo 3 caracteres!")
+    .max(45)
+    .required("Campo obrigatório!"),
+  engagementParish: Yup.string()
+    .min(3, "No mínimo 3 caracteres!")
+    .max(45)
+    .required("Campo obrigatório!"),
+  habilities: Yup.string()
+    .min(3, "No mínimo 3 caracteres!")
+    .max(45)
+    .required("Campo obrigatório!"),
 });

@@ -1,16 +1,14 @@
-import { useState } from "react";
-import { NewPdfCard, PdfCard } from "../../components";
-import { useHref } from "../../hooks";
-import { PdfEccSchemaType } from "../../types/yup";
+import { NewPdfCard } from "../../components";
+import { useHref, useNote } from "../../hooks";
+import { PdfEccSchemaType } from "../../types";
+import { ListPdfs } from "./list-pdfs";
 
 export function Notes() {
   const { href } = useHref();
-  const [pdfs, setPdfs] = useState<PdfEccSchemaType[]>([]);
+  const { createNote } = useNote();
 
-  function saveRecord(pdf: PdfEccSchemaType) {
-    const aux: PdfEccSchemaType = { ...pdf, createDate: new Date() };
-
-    setPdfs((s) => [...s, aux]);
+  async function saveRecord(pdf: PdfEccSchemaType) {
+    await createNote(pdf);
   }
 
   return (
@@ -20,11 +18,7 @@ export function Notes() {
       </h1>
       <NewPdfCard saveRecord={saveRecord} />
       <div className="h-px bg-primary-700" />
-      {pdfs.map((i) => {
-        return (
-          <PdfCard key={`${i.herName}-${i.hisName}-${i.createDate}`} {...i} />
-        );
-      })}
+      <ListPdfs />
     </div>
   );
 }

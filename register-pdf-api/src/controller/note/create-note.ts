@@ -1,10 +1,10 @@
 import { Response } from "express";
-import { CreateNodeRequestInterface } from "../../types";
+import { CreateNoteRequestInterface } from "../../types";
 import { prismaClientdb } from "../../database";
 import { noteSchema } from "../../schemas";
 
 export class CreateNoteController {
-  async handle(request: CreateNodeRequestInterface, response: Response) {
+  async handle(request: CreateNoteRequestInterface, response: Response) {
     const body = request.body;
 
     const parse = noteSchema.safeParse(body);

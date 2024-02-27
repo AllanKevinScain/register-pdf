@@ -1,15 +1,22 @@
 import { ComponentProps } from "react";
 
-type InputInterface = ComponentProps<"input">;
-export interface TextFieldInterface extends InputInterface {
+type InputType = ComponentProps<"input">;
+export interface TextFieldInterface extends InputType {
   label?: string;
   isinvalid: boolean;
   errormessage?: string;
 }
 
-type TextareaInterface = ComponentProps<"textarea">;
-export interface TextAreaFieldInterface extends TextareaInterface {
+type TextareaType = ComponentProps<"textarea">;
+export interface TextAreaFieldInterface extends TextareaType {
   label?: string;
   isinvalid: boolean;
   errormessage?: string;
+}
+type SelectType = ComponentProps<"select">;
+export interface SelectInterface extends SelectType {
+  label?: string;
+  isinvalid: boolean;
+  errormessage?: string;
+  setFieldValue: (e: string) => void;
 }

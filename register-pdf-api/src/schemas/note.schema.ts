@@ -44,9 +44,16 @@ export const noteSchema = z.object({
   activitiesThirdStage: z.string().max(200),
   engagementParish: z.string().max(200),
   habilities: z.string().max(200),
-  createDate: z.date(),
 });
 
 export const idNoteSchema = z.object({
+  id: z.string().regex(/^[\da-f]{8}-([\da-f]{4}-){3}[\da-f]{12}$/i),
+});
+
+export const pastoralSchema = z.object({
+  name: z.string().max(200),
+});
+
+export const idPastoralSchema = z.object({
   id: z.string().regex(/^[\da-f]{8}-([\da-f]{4}-){3}[\da-f]{12}$/i),
 });

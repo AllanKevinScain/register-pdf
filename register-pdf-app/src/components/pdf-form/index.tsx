@@ -1,6 +1,8 @@
 import { Input } from "..";
 import { RowContainer } from "../";
+import { formatBRDate, formatPhone } from "../../helpers";
 import { PdfCardInterface } from "./pdf-form.interface";
+import { formatCEP } from "@brazilian-utils/brazilian-utils";
 
 export function PdfForm(props: PdfCardInterface) {
   const {
@@ -10,6 +12,7 @@ export function PdfForm(props: PdfCardInterface) {
     touched,
     handleBlur,
     handleChange,
+    setFieldValue,
     allDisabled = false,
     hasEditButton = false,
     hasSaveButton = false,
@@ -35,15 +38,12 @@ export function PdfForm(props: PdfCardInterface) {
             isinvalid={!!errors.archdiocese && touched.archdiocese!}
             placeholder="(Arqui) Diocese"
           />
-          <Input.default
-            id="city"
+          <Input.citySelect
             disabled={allDisabled}
             value={values.city}
-            onChange={handleChange}
-            onBlur={handleBlur}
+            setFieldValue={(e) => setFieldValue("city", e)}
             errormessage={errors.city}
             isinvalid={!!errors.city && touched.city!}
-            placeholder="city"
           />
         </RowContainer>
         <Input.default
@@ -87,7 +87,10 @@ export function PdfForm(props: PdfCardInterface) {
             id="hisBirthdate"
             disabled={allDisabled}
             value={values.hisBirthdate}
-            onChange={handleChange}
+            onChange={(e) =>
+              setFieldValue("hisBirthdate", formatBRDate(e.target.value))
+            }
+            maxLength={10}
             onBlur={handleBlur}
             errormessage={errors.hisBirthdate}
             isinvalid={!!errors.hisBirthdate && touched.hisBirthdate!}
@@ -145,7 +148,10 @@ export function PdfForm(props: PdfCardInterface) {
             id="herBirthdate"
             disabled={allDisabled}
             value={values.herBirthdate}
-            onChange={handleChange}
+            onChange={(e) =>
+              setFieldValue("herBirthdate", formatBRDate(e.target.value))
+            }
+            maxLength={10}
             onBlur={handleBlur}
             errormessage={errors.herBirthdate}
             isinvalid={!!errors.herBirthdate && touched.herBirthdate!}
@@ -225,6 +231,7 @@ export function PdfForm(props: PdfCardInterface) {
           value={values.district}
           onChange={handleChange}
           onBlur={handleBlur}
+          max={4}
           errormessage={errors.district}
           isinvalid={!!errors.district && touched.district!}
           placeholder="district"
@@ -234,7 +241,9 @@ export function PdfForm(props: PdfCardInterface) {
             id="phoneNumber"
             disabled={allDisabled}
             value={values.phoneNumber}
-            onChange={handleChange}
+            onChange={(e) =>
+              setFieldValue("phoneNumber", formatPhone(e.target.value))
+            }
             onBlur={handleBlur}
             errormessage={errors.phoneNumber}
             isinvalid={!!errors.phoneNumber && touched.phoneNumber!}
@@ -256,7 +265,7 @@ export function PdfForm(props: PdfCardInterface) {
             id="cep"
             disabled={allDisabled}
             value={values.cep}
-            onChange={handleChange}
+            onChange={(e) => setFieldValue("cep", formatCEP(e.target.value))}
             onBlur={handleBlur}
             errormessage={errors.cep}
             isinvalid={!!errors.cep && touched.cep!}
@@ -268,6 +277,7 @@ export function PdfForm(props: PdfCardInterface) {
             value={values.addressNumber}
             onChange={handleChange}
             onBlur={handleBlur}
+            max={4}
             errormessage={errors.addressNumber}
             isinvalid={!!errors.addressNumber && touched.addressNumber!}
             placeholder="Número"
@@ -278,6 +288,7 @@ export function PdfForm(props: PdfCardInterface) {
             value={values.apartmentNumber}
             onChange={handleChange}
             onBlur={handleBlur}
+            max={6}
             errormessage={errors.apartmentNumber}
             isinvalid={!!errors.apartmentNumber && touched.apartmentNumber!}
             placeholder="Apart"
@@ -304,7 +315,12 @@ export function PdfForm(props: PdfCardInterface) {
             id="hisProfessionalPhoneNumber"
             disabled={allDisabled}
             value={values.hisProfessionalPhoneNumber}
-            onChange={handleChange}
+            onChange={(e) =>
+              setFieldValue(
+                "hisProfessionalPhoneNumber",
+                formatPhone(e.target.value)
+              )
+            }
             onBlur={handleBlur}
             errormessage={errors.hisProfessionalPhoneNumber}
             isinvalid={
@@ -317,7 +333,10 @@ export function PdfForm(props: PdfCardInterface) {
             id="dateWedding"
             disabled={allDisabled}
             value={values.dateWedding}
-            onChange={handleChange}
+            onChange={(e) =>
+              setFieldValue("dateWedding", formatBRDate(e.target.value))
+            }
+            maxLength={10}
             onBlur={handleBlur}
             errormessage={errors.dateWedding}
             isinvalid={!!errors.dateWedding && touched.dateWedding!}
@@ -341,7 +360,12 @@ export function PdfForm(props: PdfCardInterface) {
             id="herProfessionalPhoneNumber"
             disabled={allDisabled}
             value={values.herProfessionalPhoneNumber}
-            onChange={handleChange}
+            onChange={(e) =>
+              setFieldValue(
+                "herProfessionalPhoneNumber",
+                formatPhone(e.target.value)
+              )
+            }
             onBlur={handleBlur}
             errormessage={errors.herProfessionalPhoneNumber}
             isinvalid={
@@ -379,7 +403,10 @@ export function PdfForm(props: PdfCardInterface) {
           id="dateFirstStep"
           disabled={allDisabled}
           value={values.dateFirstStep}
-          onChange={handleChange}
+          onChange={(e) =>
+            setFieldValue("dateFirstStep", formatBRDate(e.target.value))
+          }
+          maxLength={10}
           onBlur={handleBlur}
           errormessage={errors.dateFirstStep}
           isinvalid={!!errors.dateFirstStep && touched.dateFirstStep!}
@@ -425,7 +452,10 @@ export function PdfForm(props: PdfCardInterface) {
           id="dateSecondStep"
           disabled={allDisabled}
           value={values.dateSecondStep}
-          onChange={handleChange}
+          onChange={(e) =>
+            setFieldValue("dateSecondStep", formatBRDate(e.target.value))
+          }
+          maxLength={10}
           onBlur={handleBlur}
           errormessage={errors.dateSecondStep}
           isinvalid={!!errors.dateSecondStep && touched.dateSecondStep!}
@@ -471,7 +501,10 @@ export function PdfForm(props: PdfCardInterface) {
           id="dateThirdStep"
           disabled={allDisabled}
           value={values.dateThirdStep}
-          onChange={handleChange}
+          onChange={(e) =>
+            setFieldValue("dateThirdStep", formatBRDate(e.target.value))
+          }
+          maxLength={10}
           onBlur={handleBlur}
           errormessage={errors.dateThirdStep}
           isinvalid={!!errors.dateThirdStep && touched.dateThirdStep!}
@@ -526,12 +559,18 @@ export function PdfForm(props: PdfCardInterface) {
         OBS: relatórios de atividades precisam ser registrados a mão
       </b>
       {hasSaveButton && (
-        <button className="bg-logo-1 text-slate-900 hover:ring-2 hover:ring-primary-600 rounded-lg py-2">
+        <button
+          type="submit"
+          className="bg-logo-1 text-slate-900 hover:ring-2 hover:ring-primary-600 rounded-lg py-2"
+        >
           Cadastrar ficha
         </button>
       )}
       {hasEditButton && (
-        <button className="bg-logo-1 text-slate-900 hover:ring-2 hover:ring-primary-600 rounded-lg py-2">
+        <button
+          type="submit"
+          className="bg-logo-1 text-slate-900 hover:ring-2 hover:ring-primary-600 rounded-lg py-2"
+        >
           Cadastrar ficha
         </button>
       )}

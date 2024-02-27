@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { prismaClientdb } from "../../database";
+import { pastoralSchema } from "../../schemas";
 
 export class CreatePastoralController {
   async handle(
@@ -7,9 +8,13 @@ export class CreatePastoralController {
     response: Response
   ) {
     const body = request.body;
+    const parse = pastoralSchema.safeParse(body);
 
-    const Pastoral = await prismaClientdb.pastoral.create({ data: body });
+    if (parse.success) {
+      const pastoral = await prismaClientdb.pastoral.create({ data: body });
+      return response.json(pastoral);
+    }
 
-    return response.json(Pastoral);
+    return response.status(502).send(parse.error);
   }
 }

@@ -8,20 +8,20 @@ type NoteType = z.infer<typeof noteSchema> & {
 
 type CutIdNoteType = Pick<NoteType, "id">;
 
-export type CreateNodeRequestInterface = Request<unknown, unknown, NoteType>;
-export type EditNodeRequestInterface = Request<
+export type CreateNoteRequestInterface = Request<unknown, unknown, NoteType>;
+export type EditNoteRequestInterface = Request<
   unknown,
   unknown,
   NoteType,
   CutIdNoteType
 >;
-export type DeleteNodeRequestInterface = Request<
+export type DeleteNoteRequestInterface = Request<
   unknown,
   unknown,
   unknown,
   CutIdNoteType
 >;
-export type GetOneNodeRequestInterface = Request<
+export type GetOneNoteRequestInterface = Request<
   unknown,
   unknown,
   unknown,

@@ -5,10 +5,10 @@ import { PdfCardInterface } from "./pdf-cart.interface";
 import { X } from "lucide-react";
 import { PdfForm } from "..";
 import { useFormik } from "formik";
-import { PdfEccSchemaType } from "../../types/yup";
+import { PdfEccSchemaType } from "../../types";
 
 export function PdfCard(props: PdfCardInterface) {
-  const { hisName, herName, createDate } = props;
+  const { hisName, herName, created_at } = props;
 
   const formikValues = useFormik<PdfEccSchemaType>({
     onSubmit: () => {},
@@ -19,11 +19,11 @@ export function PdfCard(props: PdfCardInterface) {
     <Dialog.Root>
       <Dialog.Trigger className="flex rounded-md w-full justify-between p-3 outline-none bg-logo-1 text-slate-900 text-sm font-medium hover:ring-2 hover:ring-primary-600">
         <p>{`Casal: ${hisName} e ${herName}   |   Data: ${format(
-          createDate!,
+          created_at!,
           "dd/MM/yyyy"
         )}`}</p>
         <span>
-          {formatDistanceToNow(createDate!, { locale: ptBR, addSuffix: true })}
+          {formatDistanceToNow(created_at!, { locale: ptBR, addSuffix: true })}
         </span>
       </Dialog.Trigger>
 

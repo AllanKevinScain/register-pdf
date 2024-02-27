@@ -1,4 +1,4 @@
-import { PdfEccSchemaType } from "../types/yup";
+import { PdfEccSchemaType } from "../types";
 
 export const PdfEccInitalValues: PdfEccSchemaType = {
   archdiocese: "",
